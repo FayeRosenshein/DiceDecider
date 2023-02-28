@@ -2,8 +2,7 @@ import './App.css';
 import Classes from '../Classes/Classes'
 import Final from '../FinalPage/FinalPage'
 import LandingPage from '../LandingPage/LandingPage'
-import Races from '../Races/Races'
-import SingleCharacterPage from '../SingleCharacterPage/SingleCharacterPage'
+import OneClassPage from '../OneClassPage/OneClassPage'
 import React, {Routes, Route, useState, useEffect} from 'react'
 
 function App() {
@@ -20,8 +19,7 @@ function App() {
 			<Routes>
 				<Route path='/' element={<LandingPage />}></Route>
 				<Route path='/classes' element={<Classes />}></Route>
-				<Route path='/classes/races' element={<Races />}></Route>
-				<Route path='/singlecharacter' element={<SingleCharacterPage />}></Route>
+				<Route path='/singlecharacter' element={<OneClassPage />}></Route>
 				<Route path='/final' element={<Final />}></Route>
 			</Routes>
 		</main>

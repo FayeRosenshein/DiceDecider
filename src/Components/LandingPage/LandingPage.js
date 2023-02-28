@@ -1,7 +1,5 @@
 import './LandingPage.css'
 
-export default function LandingPage({classes}) {
-	return (
-		{classes}
-	)
+export default function LandingPage() {
+	// pick character option
 }
