@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { fetchClassDetails } from '../../apiCalls/apiCalls'
 import './OneClassView.css'
 
-export default function LargeCharacterCard({singleClass}) {
+export default function LargeCharacterCard() {
 	const [singlecharacter, setSingleCharacter] = useState([])
 
 	useEffect(() => {
@@ -28,7 +28,7 @@ export default function LargeCharacterCard({singleClass}) {
 				<p>{singlecharacter.proficiency_choices[0].from.options[3].item.name}</p>
 				<p>{singlecharacter.proficiency_choices[0].from.options[4].item.name}</p>
 				<p>{singlecharacter.proficiency_choices[0].from.options[5].item.name}</p> */}
-				<p>{singlecharacter.index}</p>
+				<p>{singlecharacter.hit_die}</p>
 				<p></p>
 				<p></p>
 				<p></p>
