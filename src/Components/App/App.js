@@ -2,29 +2,22 @@ import './App.css';
 import Classes from '../Classes/Classes'
 import Final from '../FinalPage/FinalPage'
 import LandingPage from '../LandingPage/LandingPage'
-import OneClassPage from '../OneClassPage/OneClassPage'
-import React, {Routes, Route, useState, useEffect} from 'react'
-import {fetchClasses} from '../../apiCalls/apiCalls';
+import OneClassView from '../OneClassView/OneClassView'
+import React, { useState, useEffect} from 'react'
+import { Routes, Route } from 'react-router-dom';
+import {fetchClasses } from '../../apiCalls/apiCalls';
 
 function App() {
 	const [classes, setClasses] = useState([])
+	const [singleClass, setSingleClass] = useState([])
 
 	useEffect(() => {
 		fetchClasses()
-		.then(response => {
-      if (response.ok) {
-				const data = response.json()
-				console.log(data)
-        return data;
-      } else {
-        throw new Error(response.text)
-      }
-    })
 			.then(data => {
 				console.log(data.results)
 				setClasses(data.results)})
 	}, [])
-	// fetch('https://www.dnd5eapi.co/api/classes/')
+	// fetch(`https://www.dnd5eapi.co/api/classes/${class}`)
 	// .then(response => response.json())
 	// .then(data => {
 	// 	setClasses(data.results)
@@ -33,9 +26,9 @@ function App() {
   return (
 		<main>
 			<Routes>
-				<Route path='/' element={<LandingPage />}></Route>
+			<Route path="/" element={<LandingPage />} />
 				<Route path='/classes' element={<Classes classes={classes}/>}></Route>
-				<Route path='/singlecharacter' element={<OneClassPage />}></Route>
+				<Route path='/singlecharacter' element={<OneClassView />}></Route>
 				<Route path='/final' element={<Final />}></Route>
 			</Routes>
 		</main>

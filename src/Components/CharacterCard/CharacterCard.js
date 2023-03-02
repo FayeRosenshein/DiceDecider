@@ -5,7 +5,7 @@ export default function CharacterCard({name, image}) {
 	return (
 		<section>
         <p className='character-name' >{name}</p>
-        <img src={`../../../public/assests/${image}.png`} alt={name} width={150} />
+        <img src={image} alt={name} width={150} />
 		</section>
 	)
 }
