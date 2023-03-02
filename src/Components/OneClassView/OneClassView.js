@@ -8,20 +8,27 @@ export default function LargeCharacterCard({singleClass}) {
 	useEffect(() => {
 		fetchClassDetails('barbarian')
 			.then(data => {
-				console.log(data.proficiency_choices[0].from.options[0].item.name)
+				console.log('proficiency_choices',data.proficiency_choices[0].from.options[0].item.name)
+				console.log('proficiencies', data.proficiencies)
+				console.log('saving_throws', data.saving_throws)
 				setSingleCharacter(data)})
 	}, [])
 
-	const mappedProficiencyChoices = singlecharacter.proficiency_choices[0].from.options.map(choice => choice.item.name)
-	console.log(mappedProficiencyChoices)
+	// const mappedProficiencyChoices = singlecharacter.proficiency_choices[0].from.options.map(choice => choice.item.name)
+	// console.log(mappedProficiencyChoices)
 	// class detailing card
 	// classes.proficiency_choices[0].options.item.name
 	return (
 		<section>
         <img alt={singlecharacter.name} width={150} />
         <p className='character-name' >{singlecharacter.name}</p>
-				<p>{}</p>
-				<p></p>
+				{/* <p>{singlecharacter.proficiency_choices[0].from.options[0].item.name}</p>
+				<p>{singlecharacter.proficiency_choices[0].from.options[1].item.name}</p>
+				<p>{singlecharacter.proficiency_choices[0].from.options[2].item.name}</p>
+				<p>{singlecharacter.proficiency_choices[0].from.options[3].item.name}</p>
+				<p>{singlecharacter.proficiency_choices[0].from.options[4].item.name}</p>
+				<p>{singlecharacter.proficiency_choices[0].from.options[5].item.name}</p> */}
+				<p>{singlecharacter.index}</p>
 				<p></p>
 				<p></p>
 				<p></p>
