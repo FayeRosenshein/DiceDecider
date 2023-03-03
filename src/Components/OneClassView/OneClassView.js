@@ -4,11 +4,10 @@ import { fetchClassDetails } from '../../apiCalls/apiCalls'
 import './OneClassView.css'
 
 export default function OneClassView() {
-	const [classIndex, setClassIndex] = useState('')
 	const [singlecharacter, setSingleCharacter] = useState([])
 	const [loading, setLoading] = useState(true)
 
-	 let {index} = useParams()
+	let {index} = useParams()
 	let navigate = useNavigate()
 
 	useEffect(() => {
@@ -22,6 +21,7 @@ export default function OneClassView() {
 				setLoading(false)
 			})
 	}, [])
+	const findImage = `/assets/${index}.png`
 
 	// const mappedProficiencyChoices = singlecharacter.proficiency_choices[0].from.options.map(choice => choice.item.name)
 	// console.log(mappedProficiencyChoices)
@@ -39,7 +39,7 @@ export default function OneClassView() {
 			{console.log('hi')}
 			{console.log(2,singlecharacter)}
 			<button className="find" onClick={() => navigate("/classes")} >GO HOME</button>
-			<img alt={singlecharacter.name} width={150} />
+			<img src={findImage} alt={singlecharacter.name} width={150} />
 			<h2>You can can choose {singlecharacter.proficiency_choices[0].choose} skills</h2>
 			<p className='character-name' >{singlecharacter.name}</p>
 			<h2>Skills</h2>
