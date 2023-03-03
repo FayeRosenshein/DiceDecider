@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 export default function Classes({ classes }) {
 	const characterCard = classes.map(oneClass => {
 		return (
-			<Link to={`/${classes.index}`} key={classes.index} style={{ textDecoration: 'none' }}>
+			<Link to={`/classes/${oneClass.index}`} key={oneClass.index} style={{ textDecoration: 'none' }}>
 				<CharacterCard
 					key={oneClass.index}
 					index={oneClass.index}
