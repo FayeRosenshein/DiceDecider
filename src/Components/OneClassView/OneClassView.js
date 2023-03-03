@@ -1,103 +1,56 @@
+import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from 'react'
 import { fetchClassDetails } from '../../apiCalls/apiCalls'
 import './OneClassView.css'
 
-export default function LargeCharacterCard() {
+export default function OneClassView() {
 	const [singlecharacter, setSingleCharacter] = useState([])
+	const [loading, setLoading] = useState(true)
+
+	let navigate = useNavigate()
 
 	useEffect(() => {
 		fetchClassDetails('barbarian')
 			.then(data => {
-				console.log('proficiency_choices',data.proficiency_choices[0].from.options[0].item.name)
+				console.log('proficiency_choices', data.proficiency_choices[0].from.options[0].item.name)
 				console.log('proficiencies', data.proficiencies)
 				console.log('saving_throws', data.saving_throws)
-				setSingleCharacter(data)})
+				console.log(1,data)
+				setSingleCharacter(data)
+				setLoading(false)
+			})
 	}, [])
 
 	// const mappedProficiencyChoices = singlecharacter.proficiency_choices[0].from.options.map(choice => choice.item.name)
 	// console.log(mappedProficiencyChoices)
+	// const reducedProficiencyChoices = singlecharacter.proficiency_choices[0].from.options.reduce((acc, currentValue) => 
+	// 	acc + `<p>${currentValue.item.name}</p>`, '')
 	// class detailing card
 	// classes.proficiency_choices[0].options.item.name
+	if (loading) {
+		return (
+			<h1>Loading...</h1>
+		)
+	}
 	return (
 		<section>
-        <img alt={singlecharacter.name} width={150} />
-        <p className='character-name' >{singlecharacter.name}</p>
-				{/* <p>{singlecharacter.proficiency_choices[0].from.options[0].item.name}</p>
-				<p>{singlecharacter.proficiency_choices[0].from.options[1].item.name}</p>
-				<p>{singlecharacter.proficiency_choices[0].from.options[2].item.name}</p>
-				<p>{singlecharacter.proficiency_choices[0].from.options[3].item.name}</p>
-				<p>{singlecharacter.proficiency_choices[0].from.options[4].item.name}</p>
-				<p>{singlecharacter.proficiency_choices[0].from.options[5].item.name}</p> */}
-				<p>{singlecharacter.hit_die}</p>
-				<p></p>
-				<p></p>
-				<p></p>
+			
+			{console.log('hi')}
+			{console.log(2,singlecharacter)}
+			<button className="find" onClick={() => navigate("/classes")} >GO HOME</button>
+			<img alt={singlecharacter.name} width={150} />
+			<p className='character-name' >{singlecharacter.name}</p>
+			<h2>Skills</h2>
+			<p>{singlecharacter.proficiency_choices[0].from.options.map(choice => <p>{choice.item.name}</p>)}</p>
+			<h2>Hit die</h2>
+			<p>{singlecharacter.hit_die}</p>
+			<h2>Proficiencies</h2>
+			<p>{singlecharacter.proficiencies.map(choice => <p>{choice.name}</p>)}</p>
+			<h2>Starting Equipment</h2>
+			<p>{singlecharacter.starting_equipment.map(choice => <p>{choice.equipment.name}: {choice.quantity}</p>)}</p>
+			<p></p>
+			<p></p>
 
 		</section>
 	)
 }
-//proficiency_choices.from.options.item.name
-// {
-//   "index": "barbarian",
-//   "name": "Barbarian",
-//   "hit_die": 12,
-//   "proficiency_choices": [
-//     {
-//       "desc": "Choose two from Animal Handling, Athletics, Intimidation, Nature, Perception, and Survival",
-//       "choose": 2,
-//       "type": "proficiencies",
-//       "from": {
-//         "option_set_type": "options_array",
-//         "options": [
-//           {
-//             "option_type": "reference",
-//             "item": {
-//               "index": "skill-animal-handling",
-//               "name": "Skill: Animal Handling",
-//               "url": "/api/proficiencies/skill-animal-handling"
-//             }
-//           },
-//           {
-//             "option_type": "reference",
-//             "item": {
-//               "index": "skill-athletics",
-//               "name": "Skill: Athletics",
-//               "url": "/api/proficiencies/skill-athletics"
-//             }
-//           },
-//           {
-//             "option_type": "reference",
-//             "item": {
-//               "index": "skill-intimidation",
-//               "name": "Skill: Intimidation",
-//               "url": "/api/proficiencies/skill-intimidation"
-//             }
-//           },
-//           {
-//             "option_type": "reference",
-//             "item": {
-//               "index": "skill-nature",
-//               "name": "Skill: Nature",
-//               "url": "/api/proficiencies/skill-nature"
-//             }
-//           },
-//           {
-//             "option_type": "reference",
-//             "item": {
-//               "index": "skill-perception",
-//               "name": "Skill: Perception",
-//               "url": "/api/proficiencies/skill-perception"
-//             }
-//           },
-//           {
-//             "option_type": "reference",
-//             "item": {
-//               "index": "skill-survival",
-//               "name": "Skill: Survival",
-//               "url": "/api/proficiencies/skill-survival"
-//             }
-//           }
-//         ]
-//       }
-//     }
-//   ]}

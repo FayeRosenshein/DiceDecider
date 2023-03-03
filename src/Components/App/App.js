@@ -10,12 +10,14 @@ import {fetchClasses } from '../../apiCalls/apiCalls';
 function App() {
 	const [classes, setClasses] = useState([])
 	const [singleClass, setSingleClass] = useState([])
+	const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
 		fetchClasses()
 			.then(data => {
 				console.log(data.results)
 				setClasses(data.results)})
+			.finally(() => setLoading(false))
 	}, [])
 	// fetch(`https://www.dnd5eapi.co/api/classes/${class}`)
 	// .then(response => response.json())
@@ -28,7 +30,7 @@ function App() {
 			<Routes>
 			<Route path="/" element={<LandingPage />} />
 				<Route path='/classes' element={<Classes classes={classes}/>}></Route>
-				<Route path='/singlecharacter' element={<OneClassView />}></Route>
+				<Route path='/singleclass' element={<OneClassView />}/>
 				<Route path='/final' element={<Final />}></Route>
 			</Routes>
 		</main>
