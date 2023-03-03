@@ -1,16 +1,18 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useEffect, useState } from 'react'
 import { fetchClassDetails } from '../../apiCalls/apiCalls'
 import './OneClassView.css'
 
 export default function OneClassView() {
+	const [classIndex, setClassIndex] = useState('')
 	const [singlecharacter, setSingleCharacter] = useState([])
 	const [loading, setLoading] = useState(true)
 
+	 let {index} = useParams()
 	let navigate = useNavigate()
 
 	useEffect(() => {
-		fetchClassDetails('barbarian')
+		fetchClassDetails(index)
 			.then(data => {
 				console.log('proficiency_choices', data.proficiency_choices[0].from.options[0].item.name)
 				console.log('proficiencies', data.proficiencies)
@@ -34,11 +36,11 @@ export default function OneClassView() {
 	}
 	return (
 		<section>
-			
 			{console.log('hi')}
 			{console.log(2,singlecharacter)}
 			<button className="find" onClick={() => navigate("/classes")} >GO HOME</button>
 			<img alt={singlecharacter.name} width={150} />
+			<h2>You can can choose {singlecharacter.proficiency_choices[0].choose} skills</h2>
 			<p className='character-name' >{singlecharacter.name}</p>
 			<h2>Skills</h2>
 			<p>{singlecharacter.proficiency_choices[0].from.options.map(choice => <p>{choice.item.name}</p>)}</p>

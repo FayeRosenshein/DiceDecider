@@ -30,7 +30,7 @@ function App() {
 			<Routes>
 			<Route path="/" element={<LandingPage />} />
 				<Route path='/classes' element={<Classes classes={classes}/>}></Route>
-				<Route path='/singleclass' element={<OneClassView />}/>
+				<Route path='/classes/:index' element={<OneClassView/>}/>
 				<Route path='/final' element={<Final />}></Route>
 			</Routes>
 		</main>
