@@ -33,7 +33,7 @@ function App() {
 	// 	console.log(data.results)
 	// });
   return (
-		<main>
+		<main className='App'>
 			<Routes>
 			<Route path="/" element={<LandingPage />} />
 				<Route path='/classes' element={<Classes classes={classes} skills={skills}/>}></Route>

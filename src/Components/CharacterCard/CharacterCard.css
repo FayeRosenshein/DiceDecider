@@ -1,0 +1,20 @@
+.character-card {
+	background-color: #a34c50;
+	border-radius: 10px;
+	border: 3px solid #264c5e;
+  display: flex;
+  flex-direction: row;
+  gap: 1px;
+  grid-template-columns: 1fr, 1fr, 1fr;
+  margin: 0;
+  padding: 1px;
+  width: 90%;
+}
+
+.character-name {
+	width: 40vw;
+}
+
+.character-pic {
+	width: 50vw;
+}

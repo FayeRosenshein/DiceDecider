@@ -16,20 +16,24 @@ export default function Classes({ classes, skills }) {
 			</Link>
 		)
 	})
-	const mappedSkills = skills.map(skill => {return {value: skill.index, label: skill.name}})
+	const mappedSkills = skills.map(skill => { return { value: skill.index, label: skill.name } })
 	console.log(mappedSkills)
 
 
 	return (
 		<section>
-			<Select
-        closeMenuOnSelect={false}
-        // components={mappedSkills}
-        isMulti
-        options={mappedSkills}
-        // onChange={(e) => showFilteredActivitie(e)}
-      />
-			{characterCard}
+			<div className='select'>
+				<Select
+					closeMenuOnSelect={false}
+					// components={mappedSkills}
+					isMulti
+					options={mappedSkills}
+				// onChange={(e) => showFilteredActivitie(e)}
+				/>
+			</div>
+			<div className='character-card-container'>
+				{characterCard}
+			</div>
 		</section>
 	)
 }
