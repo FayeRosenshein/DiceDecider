@@ -1,7 +1,15 @@
 import './LandingPage.css'
+import { useNavigate } from "react-router-dom"
 
-export default function LandingPage({classes}) {
+function LandingPage() {
+	let navigate = useNavigate()
+	// pick character option
 	return (
-		{classes}
+		<div>
+			<p>Hi</p>
+			<button className="find" onClick={() => navigate("/classes")} >DESIGN A CHARACTER</button>
+		</div>
 	)
 }
+
+export default LandingPage
