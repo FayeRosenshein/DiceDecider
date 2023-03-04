@@ -10,6 +10,7 @@ import {fetchClassDetails, fetchClasses, fetchSkills } from '../../apiCalls/apiC
 function App() {
 	const [classes, setClasses] = useState([])
 	const [skills, setSkills] = useState([])
+	const [singlecharacter, setSingleCharacter] = useState([])
 	const [singleClass, setSingleClass] = useState([])
 	const [loading, setLoading] = useState(true)
 
@@ -24,7 +25,13 @@ function App() {
 				console.log(data.results)
 				setSkills(data.results)
 			})
-		fetchClassDetails('barbarian')
+			classes.map(oneClass => { return fetchClassDetails(oneClass.index)
+				.then(data => {
+					console.log(data)
+					setSingleCharacter(data)
+				})
+				
+			})
 	}, [])
 	// fetch(`https://www.dnd5eapi.co/api/classes/${class}`)
 	// .then(response => response.json())
@@ -32,12 +39,17 @@ function App() {
 	// 	setClasses(data.results)
 	// 	console.log(data.results)
 	// });
+	if (loading) {
+		return (
+			<h1>Loading...</h1>
+		)
+	}
   return (
 		<main className='App'>
 			<Routes>
 			<Route path="/" element={<LandingPage />} />
 				<Route path='/classes' element={<Classes classes={classes} skills={skills}/>}></Route>
-				<Route path='/classes/:index' element={<OneClassView/>}/>
+				<Route path='/classes/:index' element={<OneClassView singlecharacter={singlecharacter}/>}/>
 				<Route path='/final' element={<Final />}></Route>
 			</Routes>
 		</main>

@@ -1,0 +1,15 @@
+.landing-page {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.design-character {
+	font-weight: bold;
+	background-color: #e94445;
+	border: 3px solid #264c5e;
+	border-radius: 10px;
+	height: 30vh;
+	width: 80vw;
+}
