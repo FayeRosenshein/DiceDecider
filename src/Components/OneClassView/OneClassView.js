@@ -4,31 +4,31 @@ import { fetchClassDetails } from '../../apiCalls/apiCalls'
 import './OneClassView.css'
 import { GiCheckMark } from 'react-icons/gi'
 
-export default function OneClassView({singlecharacter}) {
-	// const [singlecharacter, setSingleCharacter] = useState([])
-	// const [loading, setLoading] = useState(true)
+export default function OneClassView() {
+	const [singlecharacter, setSingleCharacter] = useState({})
+	const [loading, setLoading] = useState(true)
 
 	let { index } = useParams()
 	let navigate = useNavigate()
 
-	// useEffect(() => {
-	// 	fetchClassDetails(index)
-	// 		.then(data => {
-	// 			console.log('proficiency_choices', data.proficiency_choices[0].from.options[0].item.name)
-	// 			console.log('proficiencies', data.proficiencies)
-	// 			console.log('saving_throws', data.saving_throws)
-	// 			console.log(1, data)
-	// 			setSingleCharacter(data)
-	// 			setLoading(false)
-	// 		})
-	// }, [])
+	useEffect(() => {
+		fetchClassDetails(index)
+			.then(data => {
+				console.log('proficiency_choices', data.proficiency_choices[0].from.options[0].item.name)
+				console.log('proficiencies', data.proficiencies)
+				console.log('saving_throws', data.saving_throws)
+				console.log(1, data)
+				setSingleCharacter(data)
+				setLoading(false)
+			})
+	}, [])
 	
 	const findImage = `/assets/${index}.png`
-	// if (loading) {
-	// 	return (
-	// 		<h1>Loading...</h1>
-	// 	)
-	// }
+	if (loading) {
+		return (
+			<h1>Loading...</h1>
+		)
+	}
 	return (
 		<section className="one-class-container">
 			<div className='nav-bar'>
@@ -37,7 +37,7 @@ export default function OneClassView({singlecharacter}) {
 			</div>
 			<img src={findImage} alt={singlecharacter.name} className='one-class-pic' />
 			<h3>You can can choose {singlecharacter.proficiency_choices[0].choose} skills</h3>
-			<p>{singlecharacter.proficiency_choices[0].from.options.map(choice => <p>{choice.item.name}</p>)}</p>
+			<p className='one-class-skills'>{singlecharacter.proficiency_choices[0].from.options.map(choice => <p>{choice.item.name}</p>)}</p>
 			<h3>Hit die</h3>
 			<p>d{singlecharacter.hit_die}</p>
 			<h3>Proficiencies</h3>

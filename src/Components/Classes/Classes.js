@@ -4,7 +4,7 @@ import Select from 'react-select'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 
-export default function Classes({ classes, skills,singleCharacter}) {
+export default function Classes({ classes, skills, allClassFeatures}) {
 	const [selectedClasses, setSelectedClasses] = useState(classes)
 	
 	const mappedSkills = skills.map(skill => { return { value: skill.index, label: skill.name } })
@@ -15,9 +15,10 @@ export default function Classes({ classes, skills,singleCharacter}) {
 			return;
 		}
 		// {singlecharacter.proficiency_choices[0].from.options.map(choice => choice.item.index)}
+		const mappedFeatures = allClassFeatures.map(classFeature => classFeature.index)
+		console.log(mappedFeatures)
 		const filteredClasses = classes.filter((oneClass) => {
 			return arrayOfInput.every((input) => {
-				console.log(input.value)
 				return input.value === true});
 		});
 		setSelectedClasses(filteredClasses);

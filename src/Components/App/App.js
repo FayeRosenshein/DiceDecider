@@ -2,34 +2,44 @@ import './App.css';
 import Classes from '../Classes/Classes'
 import LandingPage from '../LandingPage/LandingPage'
 import OneClassView from '../OneClassView/OneClassView'
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom';
-import {fetchClassDetails, fetchClasses, fetchSkills } from '../../apiCalls/apiCalls';
+import { fetchClassDetails, fetchClasses, fetchSkills } from '../../apiCalls/apiCalls';
 
 function App() {
 	const [classes, setClasses] = useState([])
 	const [skills, setSkills] = useState([])
-	const [singlecharacter, setSingleCharacter] = useState([])
-	const [singleClass, setSingleClass] = useState([])
+	const [allClassFeatures, setAllClassFeatures] = useState([])
 	const [loading, setLoading] = useState(true)
+	let allClassFeatures1 = []
+	let classes1 = []
+	let skills1 = []
 
 	useEffect(() => {
 		fetchClasses()
 			.then(data => {
 				console.log(data.results)
-				setClasses(data.results)
-				data.results.forEach(oneClass => { return fetchClassDetails(oneClass.index)
-					.then(data => {
-						console.log(data)
-						setSingleCharacter(data)
-					})})
-				})
-				.finally(() => setLoading(false))
-		fetchSkills()
-			.then(data => {
-				console.log(data.results)
-				setSkills(data.results)
+				classes1 = data.results
+				console.log('classes', classes1)
 			})
+			.then(data => classes.forEach(oneClass => {
+				return fetchClassDetails(oneClass.index)
+					.then(data => {
+						allClassFeatures1.push(data)
+					})
+			}))
+			.then(data => fetchSkills()
+				.then(data => {
+					skills1 = data.results
+					console.log('skills', skills1)
+				}))
+			.finally(() => {
+				setClasses(classes1)
+				setAllClassFeatures(allClassFeatures1)
+				setSkills(skills1)
+				setLoading(false)})
+				console.log(allClassFeatures)
+		// allClassFeatures.forEach(oneClass => console.log(oneClass.index))
 	}, [])
 	// fetch(`https://www.dnd5eapi.co/api/classes/${class}`)
 	// .then(response => response.json())
@@ -42,15 +52,15 @@ function App() {
 			<h1>Loading...</h1>
 		)
 	}
-  return (
+	return (
 		<main className='App'>
 			<Routes>
-			<Route path="/" element={<LandingPage />} />
-				<Route path='/classes' element={<Classes classes={classes} skills={skills} singleCharacter={singlecharacter}/>}></Route>
-				<Route path='/classes/:index' element={<OneClassView singlecharacter={singlecharacter}/>}/>
+				<Route path="/" element={<LandingPage />} />
+				<Route path='/classes' element={<Classes classes={classes} skills={skills} allClassFeatures={allClassFeatures} />}></Route>
+				<Route path='/classes/:index' element={<OneClassView allClassFeatures={allClassFeatures} />} />
 			</Routes>
 		</main>
-  );
+	);
 }
 
 export default App;
