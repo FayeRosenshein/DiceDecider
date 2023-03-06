@@ -18,27 +18,24 @@ function App() {
 	useEffect(() => {
 		fetchClasses()
 			.then(data => {
-				console.log(data.results)
-				classes1 = data.results
-				console.log('classes', classes1)
+				console.log('class data',data.results)
+				setClasses(data.results)
 			})
 			.then(data => classes.forEach(oneClass => {
 				return fetchClassDetails(oneClass.index)
 					.then(data => {
+						console.log('feature data', data)
 						allClassFeatures1.push(data)
 					})
 			}))
 			.then(data => fetchSkills()
 				.then(data => {
-					skills1 = data.results
-					console.log('skills', skills1)
+					console.log('skill data'.data.results)
+					setSkills(data.results)
 				}))
 			.finally(() => {
-				setClasses(classes1)
-				setAllClassFeatures(allClassFeatures1)
-				setSkills(skills1)
-				setLoading(false)})
-				console.log(allClassFeatures)
+				setLoading(false)
+			})
 		// allClassFeatures.forEach(oneClass => console.log(oneClass.index))
 	}, [])
 	// fetch(`https://www.dnd5eapi.co/api/classes/${class}`)
