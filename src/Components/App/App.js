@@ -12,41 +12,30 @@ function App() {
 	const [allClassFeatures, setAllClassFeatures] = useState([])
 	const [loading, setLoading] = useState(true)
 	let allClassFeatures1 = []
-	let classes1 = []
-	let skills1 = []
 
 	useEffect(() => {
 		fetchClasses()
 			.then(data => {
 				console.log(data.results)
-				classes1 = (data.results)
-				console.log('classes', classes1)
+				setClasses(data.results)
+				console.log('classes', classes)
 			})
 			.then(data => classes.forEach(oneClass => {
 				return fetchClassDetails(oneClass.index)
 					.then(data => {
 						allClassFeatures1.push(data)
+						setAllClassFeatures([...allClassFeatures, data])
 					})
 			}))
 			.then(fetchSkills()
 				.then(data => {
-					skills1 = data.results
-					console.log('skills', skills1)
+					setSkills(data.results)
+					console.log('skills', skills)
 				}))
 			.finally(() => {
-				setClasses(classes1)
-				setAllClassFeatures(allClassFeatures1)
-				setSkills(skills1)
 				setLoading(false)})
-				// console.log(allClassFeatures)
-		// allClassFeatures.forEach(oneClass => console.log(oneClass.index))
 	}, [])
-	// fetch(`https://www.dnd5eapi.co/api/classes/${class}`)
-	// .then(response => response.json())
-	// .then(data => {
-	// 	setClasses(data.results)
-	// 	console.log(data.results)
-	// });
+	
 	if (loading) {
 		return (
 			<h1>Loading...</h1>

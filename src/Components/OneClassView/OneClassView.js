@@ -2,7 +2,6 @@ import { useNavigate, useParams } from "react-router-dom"
 import { useEffect, useState } from 'react'
 import { fetchClassDetails } from '../../apiCalls/apiCalls'
 import './OneClassView.css'
-import { GiCheckMark } from 'react-icons/gi'
 
 export default function OneClassView() {
 	const [singlecharacter, setSingleCharacter] = useState({})
