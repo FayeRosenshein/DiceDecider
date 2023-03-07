@@ -6,21 +6,21 @@
 
 <br />
 <div align="center">
-  <a href="https://github.com/FayeRosenshein/Showcase">
-	<img alt="logo" src=""/>
+  <a href="https://github.com/FayeRosenshein/DiceDecider">
+	<!-- <img alt="logo" src=""/> -->
   </a>
 
-<h3 align="center">Showcase</h3>
+<h3 align="center">Dice Decider</h3>
 
   <p align="center">
-   Showcase
+   Dice Decider
     <br />
-    <a href="https://github.com/FayeRosenshein/Showcase"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/FayeRosenshein/DiceDecider"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/FayeRosenshein/Showcase/issues">Report Bug</a>
+    <a href="https://github.com/FayeRosenshein/DiceDecider/issues">Report Bug</a>
     ·
-    <a href="https://github.com/FayeRosenshein/Showcase/issues">Request Feature</a>
+    <a href="https://github.com/FayeRosenshein/DiceDecider/issues">Request Feature</a>
   </p>
 </div>
 
@@ -48,20 +48,20 @@
 
 ### Preview
 
-<img src="" alt="preview"/>
+<img src="public/assets/classes.png" alt="preview"/>
 
 ### abstract 
-
+Pick a class of character to start your adventuring in your dungeons and dragons campaign
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Getting Started
 
 ### Installation
-1. Fork the Repo from the [Repository](https://github.com/FayeRosenshein/Showcase)
+1. Fork the Repo from the [Repository](https://github.com/FayeRosenshein/DiceDecider)
 2. Clone the repo
    ```sh
-   git clone https://github.com/FayeRosenshein/Showcase
+   git clone https://github.com/FayeRosenshein/DiceDecider
    ```
 3. Install NPM packages
    ```sh
@@ -77,7 +77,7 @@
    ```
 
 ## App site
-[PlayPals](https://play-pals-6o0yfn85r-elbrewster.vercel.app/)
+[DiceDecider]()
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -88,11 +88,11 @@
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 <!-- ROADMAP -->
 
-<img src="" alt="roadmap"/>
+<img src="public/assets/map.png" alt="roadmap"/>
 
 ## Roadmap
 
-See the [open issues](https://github.com/FayeRosenshein/Showcase/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/FayeRosenshein/dicedecider/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
